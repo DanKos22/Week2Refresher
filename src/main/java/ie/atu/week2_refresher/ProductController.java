@@ -32,16 +32,21 @@ public class ProductController {
         productList.add(product);
         return product;
     }
-    /*
-    @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable("id") long id, @RequestBody Product product){
-        return ProductService.updateProduct(id, product);
-    }*/
+
+    @PutMapping
+    public Product updateProduct(@RequestBody Product product){
+        int i;
+        for(i = 0; i <= productList.size(); i++){
+            product = productList.get(i);
+        }
+        productList.set(i, product);
+        return product;
+    }
 
 
     @DeleteMapping("/{id}")
     public List<Product> deleteProduct(@PathVariable("id") long id){
-        productList.remove(id);
+        productList.removeIf(product -> product.getId() == id);
         return productList;
     }
 }

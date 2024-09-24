@@ -3,10 +3,7 @@ package ie.atu.week2_refresher;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +20,14 @@ public class ProductService {
         productList.add(product);
         return product;
     }
-/*
-    public Product updateProduct(@PathVariable long id, Product product){
-        return productList.;
-    }*/
 
-    public List<Product> deleteProduct(long id){
-        productList.remove(id);
+    public Product updateProduct(@RequestBody Product product){
+        //productList.set(product);
+        return product;
+    }
+
+    public List<Product> deleteProduct(@PathVariable long id){
+        productList.removeIf(product -> product.getId() == id);
         return productList;
     }
 
