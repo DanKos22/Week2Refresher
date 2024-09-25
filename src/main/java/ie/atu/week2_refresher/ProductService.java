@@ -22,7 +22,7 @@ public class ProductService {
     }
 
     public Product updateProduct(@RequestBody Product product){
-        //productList.set(product);
+        productList.set();
         return product;
     }
 
@@ -30,6 +30,4 @@ public class ProductService {
         productList.removeIf(product -> product.getId() == id);
         return productList;
     }
-
-
 }
