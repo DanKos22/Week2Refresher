@@ -24,27 +24,22 @@ public class ProductController {
 
     @GetMapping
     public List<Product>getAllProducts(){
-        return productList;
+        return productService.getAllProducts();
     }
 
     @PostMapping
     public Product addProduct(@RequestBody @Valid Product product){
-        productList.add(product);
-        return product;
+        return productService.addProduct(product);
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@RequestBody Product product){
-        //Code to update productList
-        productList.set();
-        return product;
+    public Product updateProduct(@PathVariable long id, @RequestBody Product product){
+        return productService.updateProduct(id, product);
     }
 
 
     @DeleteMapping("/{id}")
     public List<Product> deleteProduct(@PathVariable("id") long id){
-        //For each product in productList, remove product if product.getId() is equal to the id passed in the URL
-        productList.removeIf(product -> product.getId() == id);
-        return productList;
+        return productService.deleteProduct(id);
     }
 }
