@@ -21,12 +21,22 @@ public class ProductService {
         return product;
     }
 
-    public Product updateProduct(@RequestBody Product product){
-        productList.set();
+    public Product updateProduct(@PathVariable long id, @RequestBody Product product){
+        //Loop through the productList
+        for(Product oldProduct : productList){
+            //If the id passed in the URL matches the id of product in the productList, the product properties will be updated
+            if(oldProduct.getId() == id){
+                oldProduct.setId(product.getId());
+                oldProduct.setName(product.getName());
+                oldProduct.setPrice(product.getPrice());
+                return oldProduct;
+            }
+        }
         return product;
     }
 
     public List<Product> deleteProduct(@PathVariable long id){
+        //For each product in productList, remove product if product.getId() is equal to the id passed in the URL
         productList.removeIf(product -> product.getId() == id);
         return productList;
     }
