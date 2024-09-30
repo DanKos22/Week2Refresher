@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "Inventory-Service", url = "http://localhost:8081")
 public interface InventoryServiceClient {
-    @PostMapping("/confirm")
+    @PostMapping("/addProduct")
+    //Product addProduct(@RequestBody Product product);
     String someDetails(@RequestBody Product product);
 }
