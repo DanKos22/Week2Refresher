@@ -15,10 +15,12 @@ public class ProductController {
     List<Product> productList = new ArrayList<>();
 
     private final ProductService productService;
+    private InventoryServiceClient inventoryServiceClient;
 
     @Autowired
-    public ProductController(ProductService productService){
+    public ProductController(ProductService productService, InventoryServiceClient inventoryServiceClient){
         this.productService = productService;
+        this.inventoryServiceClient = inventoryServiceClient;
     }
 
 
@@ -41,5 +43,11 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public List<Product> deleteProduct(@PathVariable("id") long id){
         return productService.deleteProduct(id);
+    }
+
+    @PostMapping("/send-and-save")
+    public String sendAndSave(@RequestBody Product product) {
+        String message = inventoryServiceClient.someDetails(product);
+        return message;
     }
 }
