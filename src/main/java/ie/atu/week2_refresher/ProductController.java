@@ -29,6 +29,7 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+
     @PostMapping
     public Product addProduct(@RequestBody @Valid Product product){
         return productService.addProduct(product);
@@ -50,4 +51,6 @@ public class ProductController {
         String message = inventoryServiceClient.someDetails(product);
         return message;
     }
+
+
 }
