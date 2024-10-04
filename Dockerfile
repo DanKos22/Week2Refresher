@@ -1,5 +1,5 @@
 FROM openjdk:17-jdk-alpine
-
+ENV PROFILE=docker
 
 #Set the working directory inside the container
 WORKDIR /app
